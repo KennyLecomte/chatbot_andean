@@ -7,7 +7,7 @@ from chatterbot.conversation import Statement
 app = Flask(__name__)
 
 chatbot = ChatBot(
-    'Clinica',
+    'Andean',
     storage_adapter='chatterbot_bis.storage.sql_storage.SQLStorageAdapter',
     database_uri=os.environ['DATABASE_URL'],
     preprocessors=[
@@ -27,7 +27,7 @@ chatbot = ChatBot(
 
 trainer = ChatterBotCorpusTrainer(chatbot)
 
-trainer.train('corpus_bis.clinica')
+trainer.train('corpus_bis.andean')
 
 @app.route("/")
 def index():
