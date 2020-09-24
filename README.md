@@ -1,3 +1,3 @@
 # chatbot_clinica
 
-Version pour filtrer les réponses par corpus
+Version final du chatbot normal

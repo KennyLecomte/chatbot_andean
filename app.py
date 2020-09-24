@@ -8,7 +8,6 @@ app = Flask(__name__)
 
 chatbot = ChatBot(
     'Clinica',
-    filters='chatterbot_bis.filters.response_by_corpus',
     storage_adapter='chatterbot_bis.storage.sql_storage.SQLStorageAdapter',
     database_uri=os.environ['DATABASE_URL'],
     preprocessors=[
@@ -29,15 +28,13 @@ chatbot = ChatBot(
 trainer = ChatterBotCorpusTrainer(chatbot)
 
 trainer.train('corpus_bis.clinica')
-trainer.train('corpus_bis.test')
+
 @app.route("/")
 def index():
     return render_template("index.html")
 @app.route("/get")
 def get_bot_response():
     userText = request.args.get('msg')
-    botText = chatbot.generate_response(Statement(userText))
-    message = str(botText)+' '+str(''.join(botText.get_tags()))
-    return (str(botText.get_tag_model()))
+    return str(chatbot.generate_response(Statement(userText)))
 if __name__ == "__main__":
     app.run()
